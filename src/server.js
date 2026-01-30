@@ -21,7 +21,9 @@ app.get("/api/health", (req, res) => {
 });
 
 // TODO: add routes
-// app.use("/api/auth", authRoutes);
+import authRoutes from "./routes/auth.routes.js";
+
+app.use("/api/auth", authRoutes);
 // app.use("/api/services", serviceRoutes);
 // app.use("/api/bookings", bookingRoutes);
 
