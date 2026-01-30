@@ -58,3 +58,14 @@ export async function deleteService(req, res) {
 
   res.json({ ok: true });
 }
+
+export async function getServiceById(req, res) {
+  const { id } = req.params;
+
+  const service = await Service.findById(id);
+  if (!service || !service.isActive) {
+    return res.status(404).json({ message: "Service not found" });
+  }
+
+  res.json({ service });
+}
