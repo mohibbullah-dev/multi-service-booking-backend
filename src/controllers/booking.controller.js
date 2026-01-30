@@ -46,3 +46,19 @@ export async function myBookings(req, res) {
 
   res.json({ bookings });
 }
+
+export async function cancelBooking(req, res) {
+  const { id } = req.params;
+
+  const booking = await Booking.findOne({ _id: id, userId: req.userId });
+  if (!booking) return res.status(404).json({ message: "Booking not found" });
+
+  if (booking.status === "cancelled") {
+    return res.status(400).json({ message: "Booking already cancelled" });
+  }
+
+  booking.status = "cancelled";
+  await booking.save();
+
+  res.json({ booking });
+}
