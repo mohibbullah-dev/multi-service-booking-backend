@@ -23,10 +23,11 @@ app.get("/api/health", (req, res) => {
 // TODO: add routes
 import authRoutes from "./routes/auth.routes.js";
 import serviceRoutes from "./routes/service.routes.js";
+import bookingRoutes from "./routes/booking.routes.js";
 
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
-// app.use("/api/bookings", bookingRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // DB + Server start
 const PORT = process.env.PORT || 5000;
